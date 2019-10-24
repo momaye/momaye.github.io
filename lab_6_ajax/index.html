@@ -19,24 +19,23 @@
     function loadData() {
       fetch('ajax_sample.json')
         .then(res => res.json())
-        .then(res => res.map(c => c.code))
-        .then(codes => {
-          const instructions = document.querySelector('.instructions');
-          instructions.innerHTML = '';
+        .then(data => data.map(c => c.name))
+        .then(data => document.querySelector(".content").innerText = data);
+        for(let c = 0; c < 15; c++){
+        const selectNumber = getRandomIntInclusive(0, 242);
+        let el = document.createElement("li");
+        el.innerText = nameArray[selectNumber];
 
-          for (let i = 0; i < 50; i++) {
-            const selectNumber = getRandomIntInclusive(0, 242);
-            let el = document.createElement("li");
-            el.innerText = nameArray[selectNumber];
+        instructions.appendChild(el);
+      };
+    }
 
-            instructions.appendChild(el);
-          }
-        })
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+    }
 
-      function getRandomIntInclusive(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
   </script>
 </body>
 
